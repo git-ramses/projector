@@ -1,0 +1,23 @@
+.container-sm
+  .row.align-items-start
+    section.jumbotron.text-center.mt-3.mb-5
+      h3 User
+
+    .col-md-3
+    .col-md-6
+      form
+        .card
+          .card-body
+            .mb-3.row
+              .col-md-12
+                table.table.table-striped.table-bordered
+                  thead.thead-light
+                  tbody
+                    tr
+                      th Email
+                      td= @user.email
+            .mb-3.row
+              .col-md-12
+                .d-grid.gap-1.d-md-flex.justify-content-md-end
+                  = link_to 'Edit', edit_user_path(@user), class: 'btn btn-outline-primary'
+    .col-md-3
