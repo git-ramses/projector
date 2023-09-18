@@ -1,0 +1,27 @@
+.container-sm
+  .row.align-items-start
+    section.jumbotron.text-center
+      h3 Register
+      p Please fill in this form to register an account
+
+    .col-md-3
+    .col-md-6
+      = form_with model: @user, url: sign_up_path do |f|
+        .card
+          .card-body
+            .mb-3.row
+              .col-md-12
+                = f.label :email, class: 'form-label'
+                = f.text_field :email, class: 'form-control', placeholder: 'Enter email', required: true
+            .mb-3.row
+              .col-md-6
+                = f.label :password, class: 'form-label'
+                = f.password_field :password, class: 'form-control', placeholder: 'Enter password', required: true
+              .col-md-6
+                = f.label :password_confirmation, class: 'form-label'
+                = f.password_field :password_confirmation, class: 'form-control', placeholder: 'Re-enter password', required: true
+            .mb-3.row
+              .col-md-12
+                = f.submit 'Sign up', { class: 'btn btn-primary btn-sm btn-block' }
+
+    .col-md-3

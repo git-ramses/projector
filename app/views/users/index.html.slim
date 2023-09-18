@@ -1,0 +1,28 @@
+.container-sm
+  section.jumbotron.text-center.mt-3.mb-5
+    h3 Users
+
+  .mb-3.row
+    .d-grid.gap-2.d-md-flex.justify-content-md-end
+      = link_to 'New User', sign_up_path, class: 'btn btn-primary justify-content-end'
+  .col-md-3
+  .col-md-6
+  form
+    .card
+      .card-body
+        .mb-3.row
+          .col-md-12
+            table.table.table-striped.table-bordered
+              thead.thead-light
+                tr
+                  th ID
+                  th Email
+                  th Actions
+              tbody
+                - @users.each do |u|
+                  tr
+                    td= link_to u.id, user_path(u)
+                    td= u.email
+                    td
+                      = link_to 'Edit', edit_user_path(u), class: 'btn btn-outline-primary btn-sm'
+  .col-md-3
