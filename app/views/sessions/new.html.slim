@@ -1,0 +1,18 @@
+- if logged_in?
+  / show welcome screen
+  = render partial: 'welcome' 
+- else
+  .container.col-xl-10.col-xxl-8.px-4.py-5
+    .row.align-items-center.g-lg-5.py-5
+      h3.mb-3.fw-normal.text-center= 'Please sign in'
+      .col-md-10.mx-auto.col-lg-5
+        = form_with url: sign_in_path, id: 'login_form', class: 'p-4 p-md-5 border rounded-3 bg-light' do |f|
+          .form-floating.mb-3
+            = f.text_field :email, class: 'form-control', id: 'floatingInput', placeholder: 'name@example.com'
+            = f.label 'Email address', for: 'floatingInput'
+          .form-floating.mb-3
+            = f.password_field :password, class: 'form-control', id: 'floatingPassword', placeholder: 'Password'
+            = f.label 'Password', for: 'floatingPassword'
+          = f.submit 'Sign up', class: 'w-100 btn btn-lg btn-primary'
+          hr.my-4
+          .small.text-muted= 'By clicking Sign up, you agree to the terms of use.'

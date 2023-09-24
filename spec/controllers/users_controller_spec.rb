@@ -4,10 +4,32 @@ require 'rails_helper'
 
 # rubocop:disable Metrics/BlockLength
 RSpec.describe ::UsersController, type: :controller do
+  let(:user) { instance_double(::User, id: 1, email: 'test1@mail.com', password: 'test123') }
+  let(:current_user) { instance_double(::User, id: 1, email: 'test2@mail.com', password: 'test123') }
+
+  before do
+    allow(::User).to receive(:find).and_return(user)
+    allow(controller).to receive(:current_user).and_return(current_user)
+  end
+
   describe '#index' do
-    it 'renders the index template' do
-      get :index
-      expect(response).to render_template(:index)
+    context 'when user unauthorized' do
+      let(:current_user) { nil }
+      let(:message) { 'You do not have permission to access this page' }
+
+      it 'renders unauthorized' do
+        get :index
+        expect(flash[:danger]).to eq message
+        expect(response).to redirect_to root_path
+      end
+    end
+
+    context 'when user authorized' do
+      it 'renders the index template' do
+        get :index
+        expect(response).to have_http_status(:ok)
+        expect(response).to render_template(:index)
+      end
     end
   end
 
@@ -60,22 +82,49 @@ RSpec.describe ::UsersController, type: :controller do
   describe '#show' do
     let(:user) { instance_double(::User) }
 
-    it 'renders the show template' do
-      expect(User).to receive(:find).and_return(user)
+    context 'when user unauthorized' do
+      let(:current_user) { nil }
+      let(:message) { 'You do not have permission to access this page' }
 
-      get :show, params: { id: 1 }
-      expect(response).to render_template(:show)
+      it 'renders unauthorized' do
+        get :show, params: { id: 1 }
+        expect(flash[:danger]).to eq message
+        expect(response).to redirect_to root_path
+      end
+    end
+
+    context 'when user authorized' do
+      it 'renders the show template' do
+        expect(User).to receive(:find).and_return(user)
+
+        get :show, params: { id: 1 }
+        expect(response).to have_http_status(:ok)
+        expect(response).to render_template(:show)
+      end
     end
   end
 
   describe '#edit' do
     let(:user) { instance_double(::User) }
 
-    it 'renders the edit template' do
-      expect(User).to receive(:find).and_return(user)
+    context 'when user unauthorized' do
+      let(:current_user) { nil }
+      let(:message) { 'You do not have permission to access this page' }
 
-      get :edit, params: { id: 1 }
-      expect(response).to render_template(:edit)
+      it 'renders unauthorized' do
+        get :edit, params: { id: 1 }
+        expect(flash[:danger]).to eq message
+        expect(response).to redirect_to root_path
+      end
+    end
+
+    context 'when user authorized' do
+      it 'renders the edit template' do
+        expect(User).to receive(:find).and_return(user)
+
+        get :edit, params: { id: 1 }
+        expect(response).to render_template(:edit)
+      end
     end
   end
 
@@ -92,30 +141,43 @@ RSpec.describe ::UsersController, type: :controller do
     end
     let(:user) { instance_double(::User, id: 1) }
 
-    context 'when update fails' do
-      before do
-        allow(::User).to receive(:find).and_return(user)
-        allow(user).to receive(:update).and_return(false)
-        allow(user).to receive_message_chain(:errors, :full_messages, :join).and_return('Some error')
-      end
+    context 'when user unauthorized' do
+      let(:current_user) { nil }
+      let(:message) { 'You do not have permission to access this page' }
 
-      it 'flashs an error and redirects to the edit_user_path' do
+      it 'renders unauthorized' do
         patch :update, params: params
-        expect(flash[:danger]).to eq('Some error')
-        expect(response).to redirect_to(edit_user_path(user))
+        expect(flash[:danger]).to eq(message)
+        expect(response).to redirect_to(root_path)
       end
     end
 
-    context 'when update succeeds' do
-      before do
-        allow(::User).to receive(:find).and_return(user)
-        allow(user).to receive(:update).and_return(true)
+    context 'when user authorized' do
+      context 'when update fails' do
+        before do
+          allow(::User).to receive(:find).and_return(user)
+          allow(user).to receive(:update).and_return(false)
+          allow(user).to receive_message_chain(:errors, :full_messages, :join).and_return('Some error')
+        end
+
+        it 'flashs an error and redirects to the edit_user_path' do
+          patch :update, params: params
+          expect(flash[:danger]).to eq('Some error')
+          expect(response).to redirect_to(edit_user_path(user))
+        end
       end
 
-      it 'flashes success and redirects to the user_path' do
-        patch :update, params: params
-        expect(flash[:success]).to eq('Successfully updated user')
-        expect(response).to redirect_to(user_path(user))
+      context 'when update succeeds' do
+        before do
+          allow(::User).to receive(:find).and_return(user)
+          allow(user).to receive(:update).and_return(true)
+        end
+
+        it 'flashes success and redirects to the user_path' do
+          patch :update, params: params
+          expect(flash[:success]).to eq('Successfully updated user')
+          expect(response).to redirect_to(user_path(user))
+        end
       end
     end
   end

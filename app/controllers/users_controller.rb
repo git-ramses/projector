@@ -2,10 +2,11 @@
 
 # Controls requests around User
 class UsersController < ApplicationController
+  before_action :load_user_for_create, only: %i[create]
   before_action :load_user, only: %i[show edit update]
+  before_action :ensure_user_session, except: %i[new create]
 
   def index
-    # TODO: add authorization
     @users = User.all
   end
 
@@ -14,10 +15,9 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      # redirect_to root_path
+      redirect_to root_path
       flash[:success] = 'Successfully created account'
     else
       redirect_to sign_up_path
@@ -25,14 +25,11 @@ class UsersController < ApplicationController
     end
   end
 
-  # TODO: add authorization
   def show; end
 
-  # TODO: add authorization
   def edit; end
 
   def update
-    # TODO: add authorization
     if @user.update(user_params)
       flash[:success] = 'Successfully updated user'
       redirect_to user_path(@user)
@@ -44,12 +41,15 @@ class UsersController < ApplicationController
 
   private
 
+  def load_user_for_create
+    @user = User.new(user_params)
+  end
+
   def load_user
     @user = User.find(params[:id])
   end
 
   def user_params
-    # strong parameters
     params.require(:user).permit(:email, :password, :password_confirmation)
   end
 end
