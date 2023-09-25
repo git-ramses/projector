@@ -15,11 +15,12 @@
     "@hotwired/turbo-rails": "^7.3.0",
     "autoprefixer": "^10.4.15",
     "bootstrap": "^5.3.2",
-    "bootstrap-icons": "^1.11.0",
+    "bootstrap-icons": "^1.11.1",
     "bootstrap-sass": "^3.4.3",
     "esbuild": "^0.19.3",
     "popper": "^1.0.1",
-    "sass": "^1.67.0"
+    "sass": "^1.67.0",
+    "yarn": "^1.22.19"
   },
   "packageManager": "yarn@3.6.3",
   "devDependencies": {

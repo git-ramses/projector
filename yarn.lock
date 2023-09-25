@@ -325,9 +325,9 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:*":
-  version: 20.6.2
-  resolution: "@types/node@npm:20.6.2"
-  checksum: 96fe5303872640a173f3fd43e289a451776ed5b8f0090094447c6790b43f23fb607eea8268af0829cef4d132e5afa0bfa4cd871aa7412e9042a414a698e9e971
+  version: 20.6.5
+  resolution: "@types/node@npm:20.6.5"
+  checksum: b849e849cf7631458a65c5019c81962028e306d8c4455a48422277b240f5a7eb8a1f1dafa60306bd4c773b77263bb8b05c074b1026e868bd137bb2022cf63ea2
   languageName: node
   linkType: hard
 
@@ -585,13 +585,14 @@ __metadata:
     "@hotwired/turbo-rails": ^7.3.0
     autoprefixer: ^10.4.15
     bootstrap: ^5.3.2
-    bootstrap-icons: ^1.11.0
+    bootstrap-icons: ^1.11.1
     bootstrap-sass: ^3.4.3
     esbuild: ^0.19.3
     popper: ^1.0.1
     postcss: ^8.4.29
     postcss-cli: ^10.1.0
     sass: ^1.67.0
+    yarn: ^1.22.19
   languageName: unknown
   linkType: soft
 
@@ -797,12 +798,12 @@ __metadata:
   linkType: hard
 
 "autoprefixer@npm:^10.4.15":
-  version: 10.4.15
-  resolution: "autoprefixer@npm:10.4.15"
+  version: 10.4.16
+  resolution: "autoprefixer@npm:10.4.16"
   dependencies:
     browserslist: ^4.21.10
-    caniuse-lite: ^1.0.30001520
-    fraction.js: ^4.2.0
+    caniuse-lite: ^1.0.30001538
+    fraction.js: ^4.3.6
     normalize-range: ^0.1.2
     picocolors: ^1.0.0
     postcss-value-parser: ^4.2.0
@@ -810,7 +811,7 @@ __metadata:
     postcss: ^8.1.0
   bin:
     autoprefixer: bin/autoprefixer
-  checksum: d490b14fb098c043e109fc13cd23628f146af99a493d35b9df3a26f8ec0b4dd8937c5601cdbaeb465b98ea31d3ea05aa7184711d4d93dfb52358d073dcb67032
+  checksum: 45fad7086495048dacb14bb7b00313e70e135b5d8e8751dcc60548889400763705ab16fc2d99ea628b44c3472698fb0e39598f595ba28409c965ab159035afde
   languageName: node
   linkType: hard
 
@@ -941,10 +942,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bootstrap-icons@npm:^1.11.0":
-  version: 1.11.0
-  resolution: "bootstrap-icons@npm:1.11.0"
-  checksum: a6e2335ea4b791d078f4e627b63bb44eb40dece1a63083097419c8392fe1f32f09b0c759d0235959b47f33624b8e559a353750d971f2d7794d0f9c167a9c43f5
+"bootstrap-icons@npm:^1.11.1":
+  version: 1.11.1
+  resolution: "bootstrap-icons@npm:1.11.1"
+  checksum: d78ff24a832fc47db0c7ba5d92d150caee6d8e9ccef24c6de5c2d9728b9610884c8ade3ecadcf09fffae207786acdf40bb026ea5b79a774a1ada62026d9fe16b
   languageName: node
   linkType: hard
 
@@ -1275,16 +1276,16 @@ __metadata:
   linkType: hard
 
 "browserslist@npm:^4.21.10":
-  version: 4.21.10
-  resolution: "browserslist@npm:4.21.10"
+  version: 4.21.11
+  resolution: "browserslist@npm:4.21.11"
   dependencies:
-    caniuse-lite: ^1.0.30001517
-    electron-to-chromium: ^1.4.477
+    caniuse-lite: ^1.0.30001538
+    electron-to-chromium: ^1.4.526
     node-releases: ^2.0.13
-    update-browserslist-db: ^1.0.11
+    update-browserslist-db: ^1.0.13
   bin:
     browserslist: cli.js
-  checksum: 1e27c0f111a35d1dd0e8fc2c61781b0daefabc2c9471b0b10537ce54843014bceb2a1ce4571af1a82b2bf1e6e6e05d38865916689a158f03bc2c7a4ec2577db8
+  checksum: 89377745428d32c7bbec37055bc4b9e48aa859418ea3886b13218d825f8ea3053640f90d8652844ae855941fec0bffd2d69cf933035d6f9224b427d48d31eddf
   languageName: node
   linkType: hard
 
@@ -1470,10 +1471,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"caniuse-lite@npm:^1.0.30001517, caniuse-lite@npm:^1.0.30001520":
-  version: 1.0.30001534
-  resolution: "caniuse-lite@npm:1.0.30001534"
-  checksum: 8e8b63c1ce0d5b944ee2d8223955b33f3d4f60c33fed394ff6353b5c7106b2dc55219fd07d80c79e66ed1f82ed9367cee17bda96789cbd2ab57c8d30b1b5c510
+"caniuse-lite@npm:^1.0.30001538":
+  version: 1.0.30001538
+  resolution: "caniuse-lite@npm:1.0.30001538"
+  checksum: 94c5d55757a339c7cc175f08a024671e2b4e7c04f130b1015793303d637061347efb6ad84447c3b8137333e742d150b8ad9672716bbf2482646c2e63a56f6c55
   languageName: node
   linkType: hard
 
@@ -2270,10 +2271,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"electron-to-chromium@npm:^1.4.477":
-  version: 1.4.523
-  resolution: "electron-to-chromium@npm:1.4.523"
-  checksum: c090a958afe7849d9d1a0d3ed3a2300ded202374cd68013f9114fac33c506268b3e08a204c3f6e0ad4fe56a3ae75d23a8325cf9474e2954c6d0ddef6a018780c
+"electron-to-chromium@npm:^1.4.526":
+  version: 1.4.528
+  resolution: "electron-to-chromium@npm:1.4.528"
+  checksum: e9b249929e012ce6c25f8d1e1965e7fb19a426cc72fdf72026a0ce010846ec1b0efe2730b1a1f3d1c98bd11200b94b73431bc5279211a9f4a28f2389e690c39c
   languageName: node
   linkType: hard
 
@@ -2844,7 +2845,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fraction.js@npm:^4.2.0":
+"fraction.js@npm:^4.3.6":
   version: 4.3.6
   resolution: "fraction.js@npm:4.3.6"
   checksum: e96ae77e64ebfd442d3a5a01a3f0637b0663fc2440bcf2841b3ad9341ba24c81fb2e3e7142e43ef7d088558c6b3f8609df135b201adc7a1c674aea6a71384162
@@ -3081,8 +3082,8 @@ __metadata:
   linkType: hard
 
 "glob@npm:^10.2.2":
-  version: 10.3.4
-  resolution: "glob@npm:10.3.4"
+  version: 10.3.7
+  resolution: "glob@npm:10.3.7"
   dependencies:
     foreground-child: ^3.1.0
     jackspeak: ^2.0.3
@@ -3090,8 +3091,8 @@ __metadata:
     minipass: ^5.0.0 || ^6.0.2 || ^7.0.0
     path-scurry: ^1.10.1
   bin:
-    glob: dist/cjs/src/bin.js
-  checksum: 176b97c124414401cb51329a93d2ba112cef8814adbed10348481916b9521b677773eee2691cb6b24d66632d8c8bb8913533f5ac4bfb2d0ef5454a1856082361
+    glob: dist/esm/bin.mjs
+  checksum: 9a27f1fa8774c3a8ab8f05c26a77276edaf5418aac29aff70c5d847ef75dabf536554cb113e945193323fb769fbe32edde12559d2d52266f38662595cbc7a031
   languageName: node
   linkType: hard
 
@@ -5280,13 +5281,13 @@ __metadata:
   linkType: hard
 
 "postcss@npm:^8.4.29":
-  version: 8.4.29
-  resolution: "postcss@npm:8.4.29"
+  version: 8.4.30
+  resolution: "postcss@npm:8.4.30"
   dependencies:
     nanoid: ^3.3.6
     picocolors: ^1.0.0
     source-map-js: ^1.0.2
-  checksum: dd6daa25e781db9ae5b651d9b7bfde0ec6e60e86a37da69a18eb4773d5ddd51e28fc4ff054fbdc04636a31462e6bf09a1e50986f69ac52b10d46b7457cd36d12
+  checksum: 6c810c10c9bd3e03ca016e0b6b6756261e640aba1a9a7b1200b55502bc34b9165e38f590aef3493afc2f30ab55cdfcd43fd0f8408d69a77318ddbcf2a8ad164b
   languageName: node
   linkType: hard
 
@@ -5947,15 +5948,15 @@ __metadata:
   linkType: hard
 
 "sass@npm:^1.67.0":
-  version: 1.67.0
-  resolution: "sass@npm:1.67.0"
+  version: 1.68.0
+  resolution: "sass@npm:1.68.0"
   dependencies:
     chokidar: ">=3.0.0 <4.0.0"
     immutable: ^4.0.0
     source-map-js: ">=0.6.2 <2.0.0"
   bin:
     sass: sass.js
-  checksum: 9e7566e8b7386cf265dddcdb266a023fb5759c5a8f48a11da199c8bf419e5f08f4ff6404d85d6bf5eac01e1f7c7061fdb6b7b65cbfda164e59b0a06b72ac8567
+  checksum: 65ccede83c96768beeb8dcaf67957b7c76b12ff1276bfd2849d7be151d46ba1400048a67717e6e5e4969bc75e87348e5530f5f272833f2e60a891c21a33d8ab0
   languageName: node
   linkType: hard
 
@@ -6749,9 +6750,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"update-browserslist-db@npm:^1.0.11":
-  version: 1.0.11
-  resolution: "update-browserslist-db@npm:1.0.11"
+"update-browserslist-db@npm:^1.0.13":
+  version: 1.0.13
+  resolution: "update-browserslist-db@npm:1.0.13"
   dependencies:
     escalade: ^3.1.1
     picocolors: ^1.0.0
@@ -6759,7 +6760,7 @@ __metadata:
     browserslist: ">= 4.21.0"
   bin:
     update-browserslist-db: cli.js
-  checksum: b98327518f9a345c7cad5437afae4d2ae7d865f9779554baf2a200fdf4bac4969076b679b1115434bd6557376bdd37ca7583d0f9b8f8e302d7d4cc1e91b5f231
+  checksum: 1e47d80182ab6e4ad35396ad8b61008ae2a1330221175d0abd37689658bdb61af9b705bfc41057fd16682474d79944fb2d86767c5ed5ae34b6276b9bed353322
   languageName: node
   linkType: hard
 
@@ -7087,6 +7088,16 @@ __metadata:
     y18n: ^5.0.5
     yargs-parser: ^21.1.1
   checksum: 73b572e863aa4a8cbef323dd911d79d193b772defd5a51aab0aca2d446655216f5002c42c5306033968193bdbf892a7a4c110b0d77954a7fdf563e653967b56a
+  languageName: node
+  linkType: hard
+
+"yarn@npm:^1.22.19":
+  version: 1.22.19
+  resolution: "yarn@npm:1.22.19"
+  bin:
+    yarn: bin/yarn.js
+    yarnpkg: bin/yarn.js
+  checksum: b43d2cc5fee7e933beb12a8aee7dfceca9e9ef2dd17c5d04d15a12ab7bec5f5744ea34a07b86e013da7f291a18c4e1ad8f70e150f5ed2f4666e6723c7f0a8452
   languageName: node
   linkType: hard
 
