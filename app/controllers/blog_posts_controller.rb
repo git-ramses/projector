@@ -41,7 +41,7 @@ class BlogPostsController < ApplicationController
   private
 
   def find_blog_post_for_create
-    @blog_post = ::BlogPost.new(blogpost_params)
+    @blog_post = ::BlogPost.new(blogpost_params.merge(user: current_user))
   end
 
   def find_blog_post

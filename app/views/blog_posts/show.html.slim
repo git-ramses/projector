@@ -1,0 +1,16 @@
+.container
+  .row.g-5
+    .col-md-8
+      article.blog-post
+        h2.blog-post-title=@blog_post.subject.titleize
+        p.blog-post-meta="#{@blog_post.created_at.strftime('%b %d, %Y')} by #{@blog_post.user.email}"
+        hr
+        / TODO: add support for image here
+        p.mb-4=@blog_post.description
+      nav.blog-pagination aria-label="Pagination"
+        = link_to 'Edit', edit_blog_post_path(@blog_post), class: 'btn btn-outline-primary'
+    .col-md-4
+      .position-sticky style="top: 2rem;"
+        .p-4.mb-3.bg-light.rounded
+          h4.fst-italic About
+          p.mb-0 Test
