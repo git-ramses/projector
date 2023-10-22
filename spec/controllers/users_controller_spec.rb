@@ -94,6 +94,8 @@ RSpec.describe ::UsersController, type: :controller do
     end
 
     context 'when user authorized' do
+      before { allow(user).to receive(:decorate) }
+
       it 'renders the show template' do
         expect(User).to receive(:find).and_return(user)
 
@@ -119,6 +121,8 @@ RSpec.describe ::UsersController, type: :controller do
     end
 
     context 'when user authorized' do
+      before { allow(user).to receive(:decorate) }
+
       it 'renders the edit template' do
         expect(User).to receive(:find).and_return(user)
 
@@ -135,7 +139,8 @@ RSpec.describe ::UsersController, type: :controller do
         user: {
           email: 'test@email.com',
           password: 'test123',
-          password_confirmation: 'test123'
+          password_confirmation: 'test123',
+          role_names: %w[admin member]
         }
       }
     end
@@ -153,11 +158,16 @@ RSpec.describe ::UsersController, type: :controller do
     end
 
     context 'when user authorized' do
+      before { allow(user).to receive(:decorate) }
+
       context 'when update fails' do
         before do
           allow(::User).to receive(:find).and_return(user)
           allow(user).to receive(:update).and_return(false)
           allow(user).to receive_message_chain(:errors, :full_messages, :join).and_return('Some error')
+          allow(user).to receive_message_chain(:roles, :delete_all).and_return(true)
+          allow(user).to receive_message_chain(:roles, :create!)
+          allow(user).to receive_message_chain(:decorate, :formatted_role_names).and_return(['Admin'])
         end
 
         it 'flashs an error and redirects to the edit_user_path' do
@@ -171,6 +181,9 @@ RSpec.describe ::UsersController, type: :controller do
         before do
           allow(::User).to receive(:find).and_return(user)
           allow(user).to receive(:update).and_return(true)
+          allow(user).to receive_message_chain(:roles, :delete_all).and_return(true)
+          allow(user).to receive_message_chain(:roles, :create!)
+          allow(user).to receive_message_chain(:decorate, :formatted_role_names).and_return(['Admin'])
         end
 
         it 'flashes success and redirects to the user_path' do

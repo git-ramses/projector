@@ -1,23 +1,25 @@
-.container-sm
-  .row.align-items-start
-    section.jumbotron.text-center.mt-3.mb-5
-      h3 User
+.container.py-4
+  section.py-5.text-center.container
+    .row.py-lg-5
+      .col-lg-6.col-md-8.mx-auto
+        h1.fw-light User
 
+  .row.g-5
     .col-md-3
     .col-md-6
-      form
-        .card
-          .card-body
-            .mb-3.row
-              .col-md-12
-                table.table.table-striped.table-bordered
-                  thead.thead-light
-                  tbody
-                    tr
-                      th Email
-                      td= @user.email
-            .mb-3.row
-              .col-md-12
-                .d-grid.gap-1.d-md-flex.justify-content-md-end
-                  = link_to 'Edit', edit_user_path(@user), class: 'btn btn-outline-primary'
+      article.blog-post
+        table.table.table-striped.table-bordered
+          thead.thead-light
+          tbody
+            tr
+              th Email
+              td= @user.email
+            tr
+              th Roles
+              td= @user.formatted_role_names
+      ul.nav.justify-content-end
+        li.nav-item
+          = link_to 'Back', :back, class: 'btn btn-outline-primary me-2'
+        li.nav-item
+          = link_to 'Edit', edit_user_path(@user), class: 'btn btn-primary'
     .col-md-3

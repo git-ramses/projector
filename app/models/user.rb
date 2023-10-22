@@ -31,7 +31,7 @@ class User < ApplicationRecord
     roles.pluck(:name).include?(::Role::ADMIN)
   end
 
-  def readonly?
-    roles.pluck(:name).include?(::Role::READONLY)
+  def member?
+    roles.pluck(:name).include?(::Role::MEMBER)
   end
 end
