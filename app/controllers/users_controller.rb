@@ -25,11 +25,17 @@ class UsersController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    @user = @user.decorate
+  end
 
-  def edit; end
+  def edit
+    @user = @user.decorate
+  end
 
   def update
+    handle_role_names
+
     if @user.update(user_params)
       flash[:success] = 'Successfully updated user'
       redirect_to user_path(@user)
@@ -41,6 +47,24 @@ class UsersController < ApplicationController
 
   private
 
+  def handle_role_names
+    # return nil if role names are not changing
+    return nil unless roles_changed?
+
+    roles = params[:user][:role_names].reject(&:empty?)
+
+    @user.roles.delete_all if roles.present?
+    roles.each { |role| @user.roles.create!(name: role.downcase) }
+  end
+
+  def roles_changed?
+    # check if role_names params contains the same values as whats already stored on the user
+    role_names_in_params = params[:user][:role_names].reject(&:empty?)
+    stored_role_names = @user.decorate.formatted_role_names.split(',')
+
+    role_names_in_params != stored_role_names
+  end
+
   def load_user_for_create
     @user = User.new(user_params)
   end
@@ -50,6 +74,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    params.require(:user).permit(:email, :role_names, :password, :password_confirmation)
   end
 end

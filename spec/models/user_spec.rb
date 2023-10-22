@@ -49,10 +49,10 @@ RSpec.describe ::User, type: :model do
     it 'removes the provided role' do
       user = described_class.create(email: 'test1@email.com', password: 'test123')
       ::Role.create(name: 'admin', user_id: user.id)
-      ::Role.create(name: 'readonly', user_id: user.id)
+      ::Role.create(name: 'member', user_id: user.id)
 
       user.remove_role('admin')
-      expect(user.role_names).to eq('|readonly|')
+      expect(user.role_names).to eq('|member|')
     end
   end
 
@@ -68,7 +68,7 @@ RSpec.describe ::User, type: :model do
 
     context 'when roles excludes admin role' do
       let!(:user) { described_class.create(email: 'test1@email.com', password: 'test123') }
-      let!(:role) { ::Role.create(name: 'readonly', user_id: user.id) }
+      let!(:role) { ::Role.create(name: 'member', user_id: user.id) }
 
       it 'returns false' do
         expect(user.admin?).to eq(false)
@@ -76,22 +76,22 @@ RSpec.describe ::User, type: :model do
     end
   end
 
-  describe '#readonly?' do
-    context 'when roles includes readonly role' do
+  describe '#member?' do
+    context 'when roles includes member role' do
       let!(:user) { described_class.create(email: 'test1@email.com', password: 'test123') }
-      let!(:role) { ::Role.create(name: 'readonly', user_id: user.id) }
+      let!(:role) { ::Role.create(name: 'member', user_id: user.id) }
 
       it 'returns true' do
-        expect(user.readonly?).to eq(true)
+        expect(user.member?).to eq(true)
       end
     end
 
-    context 'when roles excludes readonly role' do
+    context 'when roles excludes member role' do
       let!(:user) { described_class.create(email: 'test1@email.com', password: 'test123') }
       let!(:role) { ::Role.create(name: 'admin', user_id: user.id) }
 
       it 'returns false' do
-        expect(user.readonly?).to eq(false)
+        expect(user.member?).to eq(false)
       end
     end
   end

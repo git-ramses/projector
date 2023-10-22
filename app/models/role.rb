@@ -3,8 +3,8 @@
 # Role representation
 class Role < ApplicationRecord
   ADMIN = 'admin'
-  READONLY = 'readonly'
-  VALID_ROLES = [ADMIN, READONLY].freeze
+  MEMBER = 'member'
+  VALID_ROLES = [ADMIN, MEMBER].freeze
 
   belongs_to :user
 

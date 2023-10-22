@@ -36,7 +36,10 @@ gem 'jbuilder'
 gem 'rubocop-rails', require: false
 
 # slim
-gem "slim-rails"
+gem 'slim-rails'
+
+# draper for decoration
+gem 'draper'
 
 # bcrypt
 gem 'bcrypt', '~> 3.1.7'
