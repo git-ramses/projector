@@ -10,11 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_25_002647) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_22_014828) do
   create_table "blog_posts", force: :cascade do |t|
     t.integer "user_id"
     t.string "subject"
     t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -24,6 +30,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_25_002647) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "role_names"
   end
 
 end
