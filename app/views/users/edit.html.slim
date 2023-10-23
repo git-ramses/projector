@@ -15,6 +15,9 @@
           .col-12
             = f.label :role_names, { class: 'form-label' }
             = f.select :role_names, options_for_select(::Role::VALID_ROLES.map { |role| role.titleize}), { include_blank: false }, { multiple: true, size: ::Role::VALID_ROLES.size, class: 'form-control selectpicker' }
+          .col-12
+            = f.label 'Profile Photo', class: 'form-label'
+            = f.file_field :avatar, class: 'form-control'
           .col-6
             = f.label :password, { class: 'form-label' }
             = f.password_field :password, { class: 'form-control' }

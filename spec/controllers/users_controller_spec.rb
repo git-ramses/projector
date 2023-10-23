@@ -140,11 +140,12 @@ RSpec.describe ::UsersController, type: :controller do
           email: 'test@email.com',
           password: 'test123',
           password_confirmation: 'test123',
-          role_names: %w[admin member]
+          role_names: %w[admin]
         }
       }
     end
-    let(:user) { instance_double(::User, id: 1) }
+    let(:user) { instance_double(::User, id: 1, roles: [roles]) }
+    let(:roles) { instance_double(::Role, name: 'member') }
 
     context 'when user unauthorized' do
       let(:current_user) { nil }
@@ -158,16 +159,14 @@ RSpec.describe ::UsersController, type: :controller do
     end
 
     context 'when user authorized' do
-      before { allow(user).to receive(:decorate) }
-
       context 'when update fails' do
         before do
           allow(::User).to receive(:find).and_return(user)
           allow(user).to receive(:update).and_return(false)
           allow(user).to receive_message_chain(:errors, :full_messages, :join).and_return('Some error')
-          allow(user).to receive_message_chain(:roles, :delete_all).and_return(true)
-          allow(user).to receive_message_chain(:roles, :create!)
           allow(user).to receive_message_chain(:decorate, :formatted_role_names).and_return(['Admin'])
+          allow(user).to receive(:remove_role).with('member')
+          allow(user).to receive(:add_role).with('admin')
         end
 
         it 'flashs an error and redirects to the edit_user_path' do
@@ -181,9 +180,9 @@ RSpec.describe ::UsersController, type: :controller do
         before do
           allow(::User).to receive(:find).and_return(user)
           allow(user).to receive(:update).and_return(true)
-          allow(user).to receive_message_chain(:roles, :delete_all).and_return(true)
-          allow(user).to receive_message_chain(:roles, :create!)
           allow(user).to receive_message_chain(:decorate, :formatted_role_names).and_return(['Admin'])
+          allow(user).to receive(:remove_role).with('member')
+          allow(user).to receive(:add_role).with('admin')
         end
 
         it 'flashes success and redirects to the user_path' do

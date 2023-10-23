@@ -48,17 +48,15 @@ class UsersController < ApplicationController
   private
 
   def handle_role_names
-    # return nil if role names are not changing
     return nil unless roles_changed?
 
     roles = params[:user][:role_names].reject(&:empty?)
 
-    @user.roles.delete_all if roles.present?
-    roles.each { |role| @user.roles.create!(name: role.downcase) }
+    @user.roles.each { |role| @user.remove_role(role.name) } if roles.present?
+    roles.each { |role| @user.add_role(role.downcase) }
   end
 
   def roles_changed?
-    # check if role_names params contains the same values as whats already stored on the user
     role_names_in_params = params[:user][:role_names].reject(&:empty?)
     stored_role_names = @user.decorate.formatted_role_names.split(',')
 
@@ -74,6 +72,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email, :role_names, :password, :password_confirmation)
+    params.require(:user).permit(:email, :role_names, :password, :password_confirmation, :avatar)
   end
 end
