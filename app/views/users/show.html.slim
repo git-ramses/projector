@@ -1,6 +1,6 @@
 .container.py-4
   section.py-5.text-center.container
-    .row.py-lg-5
+    .row
       .col-lg-6.col-md-8.mx-auto
         h1.fw-light User
 
@@ -8,6 +8,10 @@
     .col-md-3
     .col-md-6
       article.blog-post
+        - if @user.avatar.attached?
+          .text-center
+            img src="#{url_for(@user.avatar)}" width="25%" heigth="50%"
+          br
         table.table.table-striped.table-bordered
           thead.thead-light
           tbody
