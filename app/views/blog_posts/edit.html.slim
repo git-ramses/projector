@@ -14,10 +14,12 @@
             = f.text_field :subject, class: 'form-control'
             .invalid-feedback= 'Valid subject is required'
           .col-12
+            = f.label 'Image', class: 'form-label'
+            = f.file_field :avatar, class: 'form-control'
+          .col-12
             = f.label :description, class: 'form-label'
             = f.text_area :description, rows: 3, class: 'form-control'
             .invalid-feedback= 'Vaid description is required'
-          / TODO: add support for image here
         hr.my-4
         ul.nav.justify-content-end
           li.nav-item

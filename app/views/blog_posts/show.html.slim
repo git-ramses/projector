@@ -5,7 +5,9 @@
         h2.blog-post-title=@blog_post.subject.titleize
         p.blog-post-meta="#{@blog_post.created_at.strftime('%b %d, %Y')} by #{@blog_post.user.email}"
         hr
-        / TODO: add support for image here
+        - if @blog_post.avatar.attached?
+          .text-center
+            img src="#{url_for(@blog_post.avatar)}" width='50%' height='50%'
         p.mb-4=@blog_post.description
       nav.blog-pagination aria-label="Pagination"
         = link_to 'Edit', edit_blog_post_path(@blog_post), class: 'btn btn-outline-primary'
